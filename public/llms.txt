@@ -1,0 +1,15 @@
+# [Ander Salamanca]
+> Junior Full Stack Developer based in Gipuzkoa, Spain.
+
+## Summary
+I am a software developer with a background in Cross-platform Application Development (DAM). I specialize in transitioning from academic theory to production-grade engineering. My focus is on .NET (C#), Java, and modern web performance with Astro.
+
+## Technical Skills
+- **Languages:** Java, C#, TypeScript, JavaScript
+- **Frameworks:** .NET MAUI, Android Studio, Astro
+- **Tools:** Git, Odoo, SQLite
+
+## Contact & Links
+- **GitHub:** https://github.com/YOUR_USERNAME
+- **Portfolio:** https://YOUR_WEBSITE_URL (Placeholder)
+- **Status:** Open to work in the EU (B2 English).
