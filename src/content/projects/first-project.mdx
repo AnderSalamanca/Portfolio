@@ -1,0 +1,37 @@
+---
+title: My First Project
+description: This is a description of my first project. It was a great learning experience and I am proud of what I accomplished.
+coverImage: ../../assets/images/cover.jpg
+tags: ["JavaScript", "Web Development", "Astro"]
+publishDate: 2026-02-09
+draft: false
+---
+
+# Project Overview
+
+This project was built to solve a specific problem: **Managing state across multiple devices in real-time.** I wanted to move away from traditional REST APIs and explore WebSockets for instant updates.
+
+## Key Features
+
+- ⚡ **Real-time Sync:** Uses SignalR to push updates to all connected clients instantly.
+- 📱 **Mobile First:** Designed with a "thumb-friendly" UI for Android and iOS.
+- 🔒 **Secure Auth:** Implements JWT (JSON Web Tokens) with refresh rotation.
+
+## The Technical Challenge
+
+The hardest part of this project was handling **offline data synchronization**. When the device loses internet connection, the app switches to a local SQLite database. Once the connection is restored, a background worker syncs the changes back to the server.
+
+Here is a snippet of the synchronization logic:
+
+```csharp
+public async Task SyncDataAsync()
+{
+    var localChanges = await _database.GetPendingChangesAsync();
+    
+    if (localChanges.Any())
+    {
+        // Batch upload to save bandwidth
+        await _api.UploadBatchAsync(localChanges);
+        await _database.MarkAsSyncedAsync(localChanges);
+    }
+}

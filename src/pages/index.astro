@@ -1,17 +1,42 @@
 ---
+// 1. Import the frame (Layout) and the content (Card)
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
 
+const allProjects = await getCollection('projects');
+
+const publishedProjects = allProjects.filter(project => !project.data.draft);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<!-- 2. Use the Layout component. Pass the 'title' prop we defined earlier. -->
+<Layout title="Portfolio - Ander Salamanca">
+	
+	<!-- 3. Everything inside these tags is injected into the <slot /> -->
+	<main class="container mx-auto px-4 py-10">
+		
+		<h1 class="text-4xl font-bold text-gray-900 mb-8">
+			My Projects
+		</h1>
+
+		<!-- THE GRID: Here is the responsive magic -->
+		<!-- grid-cols-1 = 1 column on mobile -->
+		<!-- md:grid-cols-2 = 2 columns on tablets/desktops -->
+		<!-- lg:grid-cols-3 = 3 columns on large screens -->
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			
+			<!-- Map through the array to avoid repeating code -->
+			{publishedProjects.map((project) => (
+				<ProjectCard 
+					id ={project.id}
+					title={project.data.title} 
+					description={project.data.description} 
+					tags={project.data.tags} 
+					coverImage={project.data.coverImage}
+				/>
+			))}
+
+		</div>
+
+	</main>
+</Layout>
